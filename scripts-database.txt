@@ -1,0 +1,56 @@
+-- Criar o banco de dados
+CREATE DATABASE IF NOT EXISTS ads_dsw;
+USE ads_dsw;
+
+-- Criar a tabela chamados
+CREATE TABLE chamados (
+	id INT NOT NULL AUTO_INCREMENT,
+	solicitante VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	local VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	item VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	descricao_problema TEXT NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	observacao TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	solucao TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	status VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	tecnico_responsavel VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	data_hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	downtime TIME NULL DEFAULT NULL,
+	createdAt VARCHAR(35) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	updatedAt VARCHAR(35) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	PRIMARY KEY (id) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
+-- Inserir registros na tabela chamados
+INSERT INTO chamados (solicitante, local, item, descricao_problema, observacao, solucao, status, tecnico_responsavel, downtime, createdAt, updatedAt)
+VALUES 
+('João Silva', 'RH', 'Computador', 'Computador não liga', 'Verificar cabo de energia', 'Troca de cabo realizada', 'Resolvido', 'Carlos Souza', '00:15:00', NOW(), NOW()),
+('João Silva', 'Vendas', 'Impressora', 'Impressora não imprime', 'Nível de tinta baixo', 'Reabastecimento de tinta', 'Resolvido', 'Fernanda Lima', '00:10:00', NOW(), NOW()),
+('João Silva', 'Marketing', 'Monitor', 'Monitor piscando', 'Verificar conexões', 'Troca de cabo HDMI', 'Resolvido', 'Roberto Alves', '00:20:00', NOW(), NOW());
+
+-- Criar a tabela usuarios
+CREATE TABLE usuarios (
+	id INT NOT NULL AUTO_INCREMENT,
+	filial VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	nome VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	nivel_acesso VARCHAR(50) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	senha VARCHAR(35) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	data_hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	createdAt VARCHAR(35) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	updatedAt VARCHAR(35) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	PRIMARY KEY (id) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=0
+;
+
+-- Inserir registros na tabela usuarios
+INSERT INTO usuarios (filial, nome, nivel_acesso, senha, createdAt, updatedAt)
+VALUES 
+('Braganca', 'Admin', 'Administrador', '12345678', NOW(), NOW()),
+('Braganca', 'Henrique Bertini', 'Tecnico', '12345678', NOW(), NOW()),
+('Braganca', 'Matheus Felipe', 'Tecnico', '12345678', NOW(), NOW()),
+('Braganca', 'Paulo Vitor', 'Tecnico', '12345678', NOW(), NOW());

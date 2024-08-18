@@ -1,3 +1,4 @@
+// Controller de Chamados
 const { Chamado } = require('../models');
 
 exports.createChamado = async (req, res) => {

@@ -1,3 +1,4 @@
+// Controller de Usuários
 const { Usuario } = require('../models');
 
 exports.createUsuario = async (req, res) => {
@@ -24,7 +25,7 @@ exports.getUsuario = async (req, res) => {
     if (usuario) {
       res.status(200).json(usuario);
     } else {
-      res.status(404).jsmon({ message: 'Usuário não encontrado' });
+      res.status(404).json({ message: 'Usuário não encontrado' });
     }
   } catch (error) {
     res.status(400).json({ error: error.message });

@@ -1,15 +1,10 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Chamado extends Model {
+const { Model, DataTypes } = require('sequelize');
 
-    static associate(models) {
-    }
-  }
+module.exports = (sequelize) => {
+  class Chamado extends Model {}
+// Tabela não contém relacionamento
   Chamado.init({
-    filial: DataTypes.STRING,
     solicitante: DataTypes.STRING,
     local: DataTypes.STRING,
     item: DataTypes.STRING,
@@ -18,17 +13,14 @@ module.exports = (sequelize, DataTypes) => {
     solucao: DataTypes.TEXT,
     status: DataTypes.STRING,
     tecnico_responsavel: DataTypes.STRING,
-    departamento_solicitante: DataTypes.STRING,
-    departamento_solicitado: DataTypes.STRING,
-    departamento_tecnico_responsavel: DataTypes.STRING,
-    data_hora_abertura: DataTypes.DATE,
-    data_hora_encerramento: DataTypes.DATE,
-    data_hora_aceite: DataTypes.DATE,
-    downtime_solicitante: DataTypes.TIME,
-    downtime_tecnico: DataTypes.TIME
+    data_hora: DataTypes.DATE,
+    downtime: DataTypes.TIME,
   }, {
     sequelize,
     modelName: 'Chamado',
+    tableName: 'chamados',
+    timestamps: false,
   });
+
   return Chamado;
 };
